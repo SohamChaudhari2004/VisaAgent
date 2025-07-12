@@ -1,0 +1,93 @@
+.recorder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #242424;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.recording-indicator {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recording-indicator.active {
+  color: #ff4b4b;
+  animation: pulse 1.5s infinite;
+}
+
+.recording-indicator::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #888;
+}
+
+.recording-indicator.active::before {
+  background-color: #ff4b4b;
+}
+
+.stop-recording-btn {
+  background-color: #ff4b4b;
+  margin: 1rem 0;
+}
+
+.mic-visualization {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 60px;
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.waveform-bar {
+  width: 5px;
+  background-color: #646cff;
+  height: 20%;
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.connection-status {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.connected {
+  color: #4caf50;
+}
+
+.disconnected {
+  color: #f44336;
+}

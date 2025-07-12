@@ -1,0 +1,516 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.progress-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.progress-indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #333;
+  z-index: -1;
+}
+
+.progress-step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #333;
+  z-index: 1;
+}
+
+.progress-step.active {
+  border-color: #646cff;
+  background-color: #646cff;
+  color: white;
+}
+
+.progress-step.completed {
+  border-color: #4caf50;
+  background-color: #4caf50;
+  color: white;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+}
+
+/* Header */
+.app-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  color: #646cff;
+  margin-bottom: 0.5rem;
+}
+
+/* Main content */
+main {
+  flex: 1;
+}
+
+/* Setup Form */
+.setup-container {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  border-radius: 8px;
+  background-color: #242424;
+  color: white;
+  border: 1px solid #444;
+}
+
+.subscription-group .radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.start-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8em;
+  background-color: #646cff;
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ff6b6b;
+}
+
+/* Error banner */
+.error-banner {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff6b6b;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ff6b6b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-banner button {
+  background-color: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* Connection status */
+.connection-status {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.connected {
+  color: #4caf50;
+}
+
+.disconnected {
+  color: #f44336;
+}
+
+/* Connection Status Widget */
+.connection-status-widget {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 180px;
+  max-width: 300px;
+  transition: all 0.3s ease;
+}
+
+.connection-status-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.connection-status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.connection-status-widget.online .connection-status-indicator {
+  background-color: #4caf50;
+}
+
+.connection-status-widget.offline .connection-status-indicator {
+  background-color: #f44336;
+}
+
+.connection-status-widget.loading .connection-status-indicator {
+  background-color: #ff9800;
+  animation: pulse 1.5s infinite;
+}
+
+.connection-status-details {
+  margin-top: 8px;
+  border-top: 1px solid #333;
+  padding-top: 8px;
+  font-size: 0.9rem;
+}
+
+.connection-detail {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.connection-detail span {
+  font-weight: bold;
+}
+
+.connection-detail.success {
+  color: #4caf50;
+}
+
+.connection-detail.error {
+  color: #f44336;
+}
+
+.connection-last-checked {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.refresh-button {
+  background: none;
+  border: none;
+  color: #646cff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 2px 5px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.refresh-button:hover {
+  transform: rotate(180deg);
+}
+
+/* Interview */
+.interview-container {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.interview-status {
+  margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #333;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #646cff;
+  transition: width 0.3s ease;
+}
+
+.question-counter {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.question-box {
+  background-color: #242424;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.answer-box {
+  background-color: #242424;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+/* Recorder */
+.recorder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #242424;
+  border-radius: 8px;
+}
+
+.recording-indicator {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #888;
+}
+
+.recording-indicator.active {
+  color: #ff4b4b;
+}
+
+.stop-recording-btn {
+  background-color: #ff4b4b;
+  margin-bottom: 1rem;
+}
+
+.mic-visualization {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 60px;
+}
+
+.waveform-bar {
+  width: 5px;
+  background-color: #646cff;
+  height: 20%;
+  border-radius: 2px;
+  animation: wave 0.5s ease-in-out infinite alternate;
+}
+
+.waveform-bar:nth-child(2n) {
+  animation-delay: 0.2s;
+  height: 40%;
+}
+
+.waveform-bar:nth-child(3n) {
+  animation-delay: 0.4s;
+  height: 60%;
+}
+
+.waveform-bar:nth-child(5n) {
+  animation-delay: 0.6s;
+  height: 30%;
+}
+
+@keyframes wave {
+  from {
+    height: 10%;
+  }
+  to {
+    height: 80%;
+  }
+}
+
+/* Feedback */
+.feedback-container {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.score-overview {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.total-score {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #242424;
+  border: 4px solid #646cff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.out-of {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #888;
+}
+
+.score-details {
+  flex: 2;
+  min-width: 300px;
+}
+
+.score-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.score-item span:first-child {
+  width: 140px;
+}
+
+.score-bar {
+  flex: 1;
+  height: 10px;
+  background-color: #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  background-color: #646cff;
+}
+
+.feedback-text {
+  background-color: #242424;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.interview-log {
+  background-color: #242424;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.log-entries {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.reset-button {
+  width: 100%;
+  background-color: #646cff;
+}
+
+/* Footer */
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .score-overview {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .total-score {
+    margin: 0 auto;
+  }
+}

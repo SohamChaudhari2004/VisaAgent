@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+httpx
+pydantic
+python-dotenv
+langchain
+langchain-openai
+langchain-groq
+langchain-community
+langchain-mistralai
+pyautogen
+chromadb
+openai
+groq
+edge-tts
+webrtcvad-wheels
