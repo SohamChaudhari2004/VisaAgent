@@ -85,7 +85,7 @@ const InterviewSession = () => {
   // Handle incoming audio
   useEffect(() => {
     if (audioData) {
-      console.log("Received audio data, playing...");
+      // Fix: Always play audio as soon as it arrives
       playAudio(audioData);
     }
   }, [audioData, playAudio]);

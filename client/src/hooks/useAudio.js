@@ -116,18 +116,24 @@ export const useAudio = () => {
 
     // Play audio from ArrayBuffer
     const playAudio = useCallback((arrayBuffer) => {
-        if (!audioContextRef.current) return;
+        // Fix: Use browser's Audio API for MP3 or other audio formats
+        if (!arrayBuffer) return;
 
-        const audioContext = audioContextRef.current;
-
-        audioContext.resume().then(() => {
-            audioContext.decodeAudioData(arrayBuffer, (buffer) => {
-                const source = audioContext.createBufferSource();
-                source.buffer = buffer;
-                source.connect(audioContext.destination);
-                source.start(0);
+        try {
+            // Try to play as MP3 (edge-tts returns MP3)
+            const blob = new Blob([arrayBuffer], { type: "audio/mp3" });
+            const url = URL.createObjectURL(blob);
+            const audio = new window.Audio(url);
+            audio.play().catch((err) => {
+                setError('Failed to play audio: ' + err.message);
             });
-        });
+            // Clean up the URL after playback
+            audio.onended = () => {
+                URL.revokeObjectURL(url);
+            };
+        } catch (err) {
+            setError('Failed to play audio: ' + err.message);
+        }
     }, []);
 
     // Get the latest chunk for streaming

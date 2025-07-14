@@ -103,6 +103,7 @@ async def interview_agent(websocket: WebSocket):
                 logger.debug(f"Synthesizing speech for question using {voice}")
                 audio_bytes = await synthesize_tts(question, voice)
                 logger.debug(f"Sending audio bytes: {len(audio_bytes)} bytes")
+                # Fix: Always send as MP3 (edge-tts output is MP3)
                 await websocket.send_bytes(audio_bytes)
                 
                 # 3. Start recording
@@ -192,4 +193,3 @@ async def interview_agent(websocket: WebSocket):
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
-    

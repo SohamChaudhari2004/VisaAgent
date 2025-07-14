@@ -7,7 +7,6 @@ import edge_tts
 
 logger = logging.getLogger(__name__)
 
-# Voice mappings for edge-tts
 VOICE_MAPPINGS = {
     "VoiceA": "en-US-JennyNeural",
     "VoiceB": "en-US-ChristopherNeural",
@@ -17,30 +16,31 @@ VOICE_MAPPINGS = {
 async def synthesize_tts(text: str, voice: str) -> bytes:
     """
     Use edge-tts to produce an audio payload.
-    
     Args:
         text: The text to synthesize
         voice: Voice identifier from VOICE_MAPPINGS
-        
     Returns:
         bytes: Audio data in MP3 format
     """
     try:
-        # Map the voice selection to an edge-tts voice
         tts_voice = VOICE_MAPPINGS.get(voice, "en-US-JennyNeural")
-        
-        # Configure the TTS communication
         communicate = edge_tts.Communicate(text, tts_voice)
-        
-        # Stream to memory buffer
-        stream = io.BytesIO()
-        await communicate.stream_to_stream(stream)
-        
-        # Get the audio data
-        stream.seek(0)
-        audio_data = stream.read()
-        
+        # Use a temporary file to save the MP3, then read it back
+        import tempfile
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmpfile:
+            tmpfile_path = tmpfile.name
+        try:
+            await communicate.save(tmpfile_path)
+            with open(tmpfile_path, "rb") as f:
+                audio_data = f.read()
+        finally:
+            if os.path.exists(tmpfile_path):
+                os.remove(tmpfile_path)
         logger.info(f"Synthesized {len(audio_data)} bytes of audio for text: '{text[:50]}...'")
+        return audio_data
+    except Exception as e:
+        logger.error(f"TTS error: {str(e)}", exc_info=True)
+        return b''
         return audio_data
         
     except Exception as e:
