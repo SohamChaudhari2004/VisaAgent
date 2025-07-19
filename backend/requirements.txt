@@ -8,7 +8,7 @@ langchain-openai
 langchain-groq
 langchain-community
 langchain-mistralai
-pyautogen
+ag2
 chromadb
 openai
 groq
